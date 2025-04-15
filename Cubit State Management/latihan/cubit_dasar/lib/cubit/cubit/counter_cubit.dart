@@ -6,15 +6,19 @@ class CounterCubit extends Cubit<CounterState> {
 
   void increment() {
     emit(state.copyWith(
-      counterValue: state.counterValue + 1,
-      isLoading: !state.isLoading
+      counterValue: state.counterValue + 1
+      ));
+  }
+
+  void decrement() {
+    emit(state.copyWith(
+      counterValue: state.counterValue - 1
     ));
   }
 
-  void addNotes(String note){
+  void resetState() {
     emit(state.copyWith(
-      notes: [...state.notes, note],
-      isLoading: !state.isLoading
+      counterValue: 0
     ));
   }
 
