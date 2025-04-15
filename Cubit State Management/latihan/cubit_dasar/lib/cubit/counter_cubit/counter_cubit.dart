@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:cubit_dasar/cubit/cubit/counter_state.dart';
+import 'package:cubit_dasar/cubit/counter_cubit/counter_state.dart';
 
 class CounterCubit extends Cubit<CounterState> {
   CounterCubit() : super(CounterState());
@@ -12,7 +12,7 @@ class CounterCubit extends Cubit<CounterState> {
 
   void decrement() {
     emit(state.copyWith(
-      counterValue: state.counterValue - 1
+      counterValue: (state.counterValue - 1)
     ));
   }
 

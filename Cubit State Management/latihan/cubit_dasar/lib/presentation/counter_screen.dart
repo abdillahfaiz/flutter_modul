@@ -1,5 +1,5 @@
-import 'package:cubit_dasar/cubit/cubit/counter_cubit.dart';
-import 'package:cubit_dasar/cubit/cubit/counter_state.dart';
+import 'package:cubit_dasar/cubit/counter_cubit/counter_cubit.dart';
+import 'package:cubit_dasar/cubit/counter_cubit/counter_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
