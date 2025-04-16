@@ -5,22 +5,10 @@ class TodoListCubit extends Cubit<TodoListState> {
   TodoListCubit() : super(TodoListState());
 
   void addNotes(String note) {
-    var noteState = state.notes;
-
-    noteState.add(note);
-
-    emit(
-      state.copyWith(
-        notes: noteState, // -> mirip dengan state.notes.add(note)
-      ),
-    );
+    emit(state.copyWith(notes: [...state.notes, note]));
   }
 
   void deleteNotes(int index) {
-    var noteState = state.notes;
-
-    noteState.removeAt(index);
-
-    emit(state.copyWith(notes: noteState));
+    emit(state.copyWith(notes: List.from(state.notes)..removeAt(index)));
   }
 }

@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 
 class TodoListState extends Equatable {
   const TodoListState({
-    this.notes = const []
+    this.notes = const ["Mengerjakan PR", "Tugas Pak Dedi", "Ngopi"],
   });
 
   final List<String> notes;
@@ -11,11 +11,7 @@ class TodoListState extends Equatable {
   @override
   List<Object> get props => [notes];
 
-  TodoListState copyWith({
-    List<String>? notes,
-  }) {
-    return TodoListState(
-      notes: notes ?? this.notes,
-    );
+  TodoListState copyWith({List<String>? notes}) {
+    return TodoListState(notes: notes ?? this.notes);
   }
 }

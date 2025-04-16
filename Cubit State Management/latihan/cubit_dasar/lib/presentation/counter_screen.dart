@@ -8,9 +8,7 @@ class CounterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CounterCubit(), 
-      child: _Content());
+    return BlocProvider(create: (context) => CounterCubit(), child: _Content());
   }
 }
 
