@@ -7,7 +7,7 @@ class ProductState extends Equatable {
   const ProductState({
     this.detailProduct = const DetailProductModel(),
     this.isLoading = false,
-    this.error = ''
+    this.error = '',
   });
 
   final DetailProductModel detailProduct;

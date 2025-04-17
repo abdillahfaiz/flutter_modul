@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cubit_dasar/cubit/product_cubit/product_state.dart';
-import 'package:cubit_dasar/models/detail_product_model/detail_product_model.dart';
-import 'package:dio/dio.dart';
+import 'package:cubit_dasar/datasource/product_service.dart';
 
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit() : super(ProductState());
@@ -9,14 +8,13 @@ class ProductCubit extends Cubit<ProductState> {
   Future<void> getProductData() async {
     emit(state.copyWith(isLoading: true));
 
-    var response = await Dio().get('https://fakestoreapi.com/products/1');
+    var data = await ProductService().fetchProductDetail();
 
-    if (response.statusCode == 200) {
-      var data = DetailProductModel.fromMap(response.data);
-      emit(state.copyWith(detailProduct: data));
-    } else {
-      emit(state.copyWith(error: 'Gagal menampilkan product data'));
-    }
+    data.fold(
+      (left) => emit(state.copyWith(error: left)),
+      (right) => emit(state.copyWith(detailProduct: right)),
+    );
+
     emit(state.copyWith(isLoading: false));
   }
 }
