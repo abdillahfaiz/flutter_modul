@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 
 class ProductService {
-  final dio = Dio();
+  final dio = Dio(BaseOptions(connectTimeout: Duration(seconds: 5)));
 
   Future<Either<String, DetailProductModel>> fetchProductDetail() async {
     try {
