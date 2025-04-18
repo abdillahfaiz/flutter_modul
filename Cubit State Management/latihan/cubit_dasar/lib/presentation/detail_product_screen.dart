@@ -28,46 +28,71 @@ class _ContentState extends State<_Content> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Detail Product')),
-      body: BlocBuilder<ProductCubit, ProductState>(
-        builder: (context, state) {
-          if (state.isLoading) {
-            return Center(child: CircularProgressIndicator());
-          } else if (state.error != '') {
-            return Center(child: Text(state.error));
-          } else {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Image.network(
-                    state.detailProduct.image ?? '',
-                    fit: BoxFit.cover,
-                  ),
-                  const SizedBox(height: 8.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text(
-                      state.detailProduct.title ?? 'Empty null',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+    return BlocListener<ProductCubit, ProductState>(
+      listener: (context, state) {
+        if (state.detailProduct.id != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Berhasil Get Product',
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: Colors.green,
+              behavior: SnackBarBehavior.floating,
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        } else if (state.error != '') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.error, style: TextStyle(color: Colors.white)),
+              backgroundColor: Colors.red,
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(title: Text('Detail Product')),
+        body: BlocBuilder<ProductCubit, ProductState>(
+          builder: (context, state) {
+            if (state.isLoading) {
+              return Center(child: CircularProgressIndicator());
+            } else if (state.error != '') {
+              return Center(child: Text(state.error));
+            } else {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Image.network(
+                      state.detailProduct.image ?? '',
+                      fit: BoxFit.cover,
+                    ),
+                    const SizedBox(height: 8.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        state.detailProduct.title ?? 'Empty null',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 8.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text(
-                      state.detailProduct.description ?? 'Empty null desc',
-                      style: const TextStyle(fontSize: 14),
+                    const SizedBox(height: 8.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        state.detailProduct.description ?? 'Empty null desc',
+                        style: const TextStyle(fontSize: 14),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          }
-        },
+                  ],
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

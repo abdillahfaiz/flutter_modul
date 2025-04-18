@@ -9,12 +9,7 @@ import 'news_state.dart';
 class NewsCubit extends Cubit<NewsState> {
   NewsCubit() : super(NewsState());
 
-  final Dio dio = Dio(
-    BaseOptions(
-      connectTimeout: const Duration(seconds: 3),
-      receiveTimeout: const Duration(seconds: 5),
-    ),
-  );
+  final Dio dio = Dio();
 
   Future<void> getNewsData() async {
     emit(state.copyWith(isLoading: true)); // -> Loading
