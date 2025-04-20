@@ -34,7 +34,7 @@ Materi ini dibagi ke beberapa bagian:
 ---
 
 ### 📦 Model: DetailProductModel
-Disini kita akan membuat model untuk menampung data yang kita ambil dari API. Berikut adalah response data yang kita ambil dari API:
+Disini kita akan membuat model untuk menampung data yang kita ambil dari API. Berikut adalah response data yang kita ambil dari API ini `https://fakestoreapi.com/products/1`:
 
 ```json
 {
